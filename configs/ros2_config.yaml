@@ -1,0 +1,5 @@
+nodes:
+  vision_node:
+    rate: 30  # Hz
+  control_node:
+    rate: 10  # Hz

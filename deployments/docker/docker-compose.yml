@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  robot:
+    build: .
+    runtime: nvidia
+    environment:
+      - ROS_DOMAIN_ID=1
+    volumes:
+      - .:/app

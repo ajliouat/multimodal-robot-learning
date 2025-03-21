@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multimodal-robot-learning
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: multimodal-robot-learning
+  template:
+    metadata:
+      labels:
+        app: multimodal-robot-learning
+    spec:
+      containers:
+      - name: robot
+        image: multimodal-robot-learning:latest
+        ports:
+        - containerPort: 8000
