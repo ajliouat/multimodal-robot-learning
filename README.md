@@ -41,7 +41,7 @@ pip install -r requirements.txt
 
 ### Train the RL Policy
 ```bash
-./scripts/train_rl_policy.sh --config configs/config.yaml
+./scripts/train_rl_policy.sh --config configs/rl_config.yaml
 ```
 
 ### Start ROS2 Nodes
@@ -53,22 +53,28 @@ pip install -r requirements.txt
 
 ## Configuration
 
-The `config.yaml` file is the central configuration for the project. Below is an example configuration:
+The `config.yaml` files are the central configurations for the project. Below are example configurations:
 
+### RL Configuration (`configs/rl_config.yaml`)
 ```yaml
-rl_policy:
-  learning_rate: 0.001
-  batch_size: 32
-  num_epochs: 100
-vision_language_model:
-  model_name: "gpt-4v"
-  temperature: 0.7
-ros2:
-  nodes:
-    vision_node:
-      rate: 30  # Hz
-    control_node:
-      rate: 10  # Hz
+learning_rate: 0.001
+batch_size: 32
+num_epochs: 100
+```
+
+### Vision Configuration (`configs/vision_config.yaml`)
+```yaml
+model_name: "gpt-4v"
+temperature: 0.7
+```
+
+### ROS2 Configuration (`configs/ros2_config.yaml`)
+```yaml
+nodes:
+  vision_node:
+    rate: 30  # Hz
+  control_node:
+    rate: 10  # Hz
 ```
 
 ---
@@ -79,15 +85,16 @@ ros2:
 multimodal-robot-learning/
 ├── benchmarks/          # Performance benchmarks
 ├── configs/             # Configuration files
-├── data/                # Sample dataset for testing
-├── deployments/         # Docker and deployment files
+├── data/                # Datasets and preprocessed data
+├── deployments/         # Docker and Kubernetes deployment files
 ├── models/              # Pretrained models
+├── notebooks/           # Exploration and testing notebooks
 ├── scripts/             # Utility scripts
 ├── src/                 # Source code
 │   ├── core/            # Core RL and vision-language logic
 │   ├── robotics/        # ROS2 nodes for robotics
 │   └── utils/           # Utility functions
-├── tests/               # Unit tests
+├── tests/               # Unit and integration tests
 ```
 
 ---
