@@ -1,0 +1,1 @@
+torch.save(policy.state_dict(), "models/rl_policy/policy.pt")

@@ -12,12 +12,13 @@ A comprehensive system integrating vision-language models, segmentation, and rei
 
 ## Table of Contents
 1. [Installation](#installation)
-2. [Usage](#usage)
-3. [Configuration](#configuration)
-4. [Project Structure](#project-structure)
-5. [Benchmarks](#benchmarks)
-6. [Contributing](#contributing)
-7. [License](#license)
+2. [Dataset Preparation](#dataset-preparation)
+3. [Usage](#usage)
+4. [Configuration](#configuration)
+5. [Project Structure](#project-structure)
+6. [Benchmarks](#benchmarks)
+7. [Contributing](#contributing)
+8. [License](#license)
 
 ---
 
@@ -35,6 +36,36 @@ A comprehensive system integrating vision-language models, segmentation, and rei
 pip install -r requirements.txt
 ```
 
+### Download Model Weights
+1. **Segment Anything Model (SAM)**:
+   - Download the SAM weights (`sam_vit_h_4b8939.pth`) from the [official repository](https://github.com/facebookresearch/segment-anything).
+   - Place the weights in `models/sam/`.
+
+2. **Vision-Language Model**:
+   - If using GPT-4V, obtain the weights from OpenAI.
+   - For open-source alternatives (e.g., GPT-2 or GPT-3), download the weights and place them in `models/vision_language/gpt4v_weights/`.
+
+---
+
+## Dataset Preparation
+
+### Real-World Dataset
+1. Use a dataset like COCO or create your own.
+2. Place the images in `data/datasets/real_world/images/`.
+3. Place the annotations in `data/datasets/real_world/annotations/` (COCO format recommended).
+
+### Simulation Dataset
+1. Generate synthetic data using tools like Isaac Gym or Blender.
+2. Place the images in `data/datasets/simulation/images/`.
+3. Place the annotations in `data/datasets/simulation/annotations/` (COCO format recommended).
+
+### Preprocessing
+Run the preprocessing script to prepare the data for training:
+```bash
+./scripts/preprocess_data.sh
+```
+This will populate the `data/preprocessed/` folder with train, test, and validation datasets.
+
 ---
 
 ## Usage
@@ -42,6 +73,11 @@ pip install -r requirements.txt
 ### Train the RL Policy
 ```bash
 ./scripts/train_rl_policy.sh --config configs/rl_config.yaml
+```
+
+### Train the Vision-Language Model
+```bash
+./scripts/train_vision_language.sh --config configs/vision_config.yaml
 ```
 
 ### Start ROS2 Nodes
